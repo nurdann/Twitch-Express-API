@@ -104,9 +104,34 @@ Increase file watchers to run React app
 $ sudo sysctl fs.inotify.max_user_watches=500000
 ```
 
+Install dependencies and run
+```
+$ npm install
+$ npm start
+```
 
+## Setup backend
 
+Install `dotenv` to get environment variables, that is API keys, from `.env` file
+```
+$ npm install -s dotenv
+```
 
+Install `nodemon`
+
+```
+$ npm install -s nodemon
+```
+
+Now files changes trigger restart
+```
+nodemon ./bin/www
+```
+
+### Express API routes
+
+- `/channels/:name/:pagination?` - Searches channels by name with optional pagination so that consecutive results can be retrieved
+- `/channel/:name` - Retrives a channel information
 
 [auth-docs]: https://dev.twitch.tv/docs/authentication/
 [bearer-token-docs]: https://dev.twitch.tv/docs/authentication/getting-tokens-oauth#oauth-client-credentials-flow
