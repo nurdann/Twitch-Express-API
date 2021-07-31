@@ -31,12 +31,10 @@ app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-
   // send the error page
   // https://stackoverflow.com/a/32836884
   res.status(err.status || 500);
   res.json({
-    message: err.message,
     error: err
   });
 });
