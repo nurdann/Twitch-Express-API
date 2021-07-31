@@ -1,6 +1,8 @@
 
 # MERN application using Twitch API
 
+The project was developed on Ubuntu 18.04.
+
 ## Get Twitch API
 
 Go to (Twitch developer console](https://dev.twitch.tv/console/apps), under "Applications" click "Register Your application" which creates client ID and client secret keys. No scopes are needed for app access tokens [as described in docs][auth-docs].
@@ -28,7 +30,7 @@ $ curl -H "Authorization: OAuth <access-token>" https://id.twitch.tv/oauth2/vali
 
 Response codes
 - `401` - expired or incorrect credentials
-
+- `200` - OK
 
 ## Sample request
 
@@ -87,6 +89,25 @@ $ curl --location --request GET 'https://api.twitch.tv/helix/channels?broadcaste
 ```
 
 source: https://dev.twitch.tv/docs/api/reference#search-channels
+
+## Initialize project
+
+Create Express backend, and initialize React frontend as a subfolder
+```
+$ npx express-generator momenta
+$ cd momenta
+$ npx create-react-app momenta-frontend
+```
+
+Increase file watchers to run React app
+```
+$ sudo sysctl fs.inotify.max_user_watches=500000
+```
+
+
+
+
+
 [auth-docs]: https://dev.twitch.tv/docs/authentication/
 [bearer-token-docs]: https://dev.twitch.tv/docs/authentication/getting-tokens-oauth#oauth-client-credentials-flow
 
