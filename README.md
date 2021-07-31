@@ -130,8 +130,9 @@ nodemon ./bin/www
 
 ### Express API routes
 
-- `/channels/:name/:pagination?` - Searches channels by name with optional pagination so that consecutive results can be retrieved
-- `/channel/:name` - Retrives a channel information
+- `/api/channels/:name/:pagination?` - Searches channels by name with optional pagination so that consecutive results can be retrieved
+- `/api/channel/:name` - Retrives a channel information
+- `/` - Fetches static files from `momenta-frontend/build` location
 
 [auth-docs]: https://dev.twitch.tv/docs/authentication/
 [bearer-token-docs]: https://dev.twitch.tv/docs/authentication/getting-tokens-oauth#oauth-client-credentials-flow
