@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "NODE_ENV=production PORT=3000 nodemon ./bin/www"
+    "server": "NODE_ENV=development PORT=8000 nodemon ./bin/www",
+    "client": "cd momenta-frontend && npm start",
+    "dev": "./node_modules/.bin/concurrently 'npm run server' 'npm run client' "
   },
   "dependencies": {
     "assert": "^2.0.0",
