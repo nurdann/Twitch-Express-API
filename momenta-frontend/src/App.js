@@ -4,9 +4,9 @@ import Channels from './components/Channels';
 import Channel from './components/Channel';
 
 function App() {
-  const [channelQuery, setChannelQuery] = useState('boxbox');
+  const [channelQuery, setChannelQuery] = useState('');
   const [channelList, setChannelList] = useState([]);
-  const [pagination, setPagination] = useState('');
+  const [pagination, setPagination] = useState({});
   const [broadcasterId, setBroadcasterId] = useState('');
 
   // Fetch channels from twitch API when channelQuery changes
@@ -25,11 +25,38 @@ function App() {
     } 
   }, [channelQuery]);
 
+  const isEmptyObject = (obj) => {
+    // source: https://stackoverflow.com/a/32108184
+    return obj && Object.keys(obj).length === 0 && obj.constructor === Object;
+  }
+
+  const fetchChannelsWithPagination = async () => {
+    if(isEmptyObject(pagination)) {
+      return;
+    }
+
+    const cursor = pagination.cursor;
+    const response = await fetch(`/api/channels/${channelQuery}/${cursor}`);
+    if(response?.status === 200) {
+      const result = await response.json();
+      setChannelList(channelList.concat(result.data));
+      setPagination(result.pagination);
+    }
+  }
+
   return (
     <div className="App">
       <SearchBar setChannel={setChannelQuery}/>
       <div className="search-results">
-        <Channels channelList={channelList} setBroadcasterId={setBroadcasterId}/>
+        <div>
+          <Channels channelList={channelList} setBroadcasterId={setBroadcasterId}/>
+          
+          {!isEmptyObject(pagination) &&
+            <button id="load-consecutive" onClick={fetchChannelsWithPagination}>
+              Load more matches
+            </button>
+          }
+        </div>
         {broadcasterId.length > 0 && <Channel broadcasterId={broadcasterId}/>}
       </div>
     </div>
