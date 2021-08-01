@@ -11,3 +11,80 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.App {
+  padding: 1em;
+}
+
+h4, h3 {
+  margin: 0;
+}
+
+.search-field {
+  display: flex;
+  justify-content: center;
+}
+
+.search-field form {
+  display: inline-flex;
+  border-radius: 3px;
+  flex: 1;
+  max-width: 500px;
+}
+
+#search-input,
+#search-button {
+  border: 1px solid rgb(99, 99, 99);
+  padding: .5em;
+  outline: none;
+}
+
+#search-input {
+  display: flex;
+  flex-grow: 1;
+  border-radius: 3px 0 0 3px;
+}
+
+#search-input:focus,
+#search-input:focus + #search-button {
+  box-shadow: 0 0 5px rgba(0, 255, 255, 0.514);
+}
+
+#search-button {
+  border-left: none;
+  border-radius: 0 3px 3px 0;
+}
+
+.search-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 1em;
+  margin: 1em 0;
+}
+
+.search-results ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.search-results li {
+  padding: 1em;
+  margin-bottom: 1em;
+  cursor: pointer;
+  box-shadow: 0 0 5px rgba(30, 30, 30, .5);
+  position: relative;
+}
+
+.search-results li.ON {
+  box-shadow: 0 0 5px rgba(218, 8, 8, 0.5);
+}
+
+.search-results img {
+  max-width: 100%;
+}
+
+.channel-info {
+  padding: 1em;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.596);
+}
