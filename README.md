@@ -1,3 +1,30 @@
+# Quickstart
+
+Get client ID and client secret as described [below](#get-twitch-api), and place them in `.env` file.
+
+## Using container
+
+Using docker, run the following command and open https://localhost:3000
+```
+$ docker build --tag momenta .
+$ docker run -it -p 3000:3000 momenta
+```
+
+## Using host machine
+
+```
+$ npm ci
+$ cd momenta-frontend && npm ci
+$ npm start
+```
+
+## Development
+
+Run the following to start development environment
+```
+$ npm run dev
+```
+
 
 # MERN application using Twitch API
 
@@ -5,9 +32,9 @@ The project was developed on Ubuntu 18.04.
 
 ## Get Twitch API
 
-Go to (Twitch developer console](https://dev.twitch.tv/console/apps), under "Applications" click "Register Your application" which creates client ID and client secret keys. No scopes are needed for app access tokens [as described in docs][auth-docs].
+Go to [Twitch developer console](https://dev.twitch.tv/console/apps), under "Applications" click "Register Your application" which creates client ID and client secret keys. No scopes are needed for app access tokens [as described in docs][auth-docs].
 
-Generate [bearer access token for API calls][bearer-token-docs],
+Generate [bearer access token for API calls][bearer-token-docs], you will need to specify `$client_id` and `$client_secret`.
 
 ```
 $ curl --location --request POST "https://id.twitch.tv/oauth2/token?client_id=$client_id&client_secret=$client_secret&grant_type=client_credentials" 
@@ -137,3 +164,16 @@ nodemon ./bin/www
 [auth-docs]: https://dev.twitch.tv/docs/authentication/
 [bearer-token-docs]: https://dev.twitch.tv/docs/authentication/getting-tokens-oauth#oauth-client-credentials-flow
 
+## Run application in a container
+
+Create a `Dockerfile` that downloads package dependencies and builds static files.
+
+Build the image
+```
+$ docker build --tag momenta .
+```
+
+Then specify host-to-container port mapping, `-it` ensures that `Ctrl-C` commands send SIGINT to the process.
+```
+$ docker run -it -p 3000:3000 momenta
+```
