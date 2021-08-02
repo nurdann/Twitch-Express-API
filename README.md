@@ -193,3 +193,8 @@ $ git commit -m 'Added .env'
 $ git update-index --asume-unchanged .env
 ```
 
+Remove unused packages from `package.json` and remove them from `./node_modules`,
+
+```
+$ npm prune
+```
