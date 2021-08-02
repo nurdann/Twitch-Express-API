@@ -177,3 +177,19 @@ Then specify host-to-container port mapping, `-it` ensures that `Ctrl-C` command
 ```
 $ docker run -it -p 3000:3000 momenta
 ```
+
+## Clean up
+
+Delete `.env` from history by accidentally committing it,
+
+```
+$ git filter-branch --index-filter "git rm -rf --cached --ignore-unmatch .env" HEAD
+```
+
+Add `.env` file initially but do not track its changes,
+```
+$ git add -f .env
+$ git commit -m 'Added .env'
+$ git update-index --asume-unchanged .env
+```
+
